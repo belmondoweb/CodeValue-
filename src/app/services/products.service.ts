@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, pipe, throwError } from 'rxjs';
 import { IProduct } from './product';
-import { map, catchError } from 'rxjs/operators';
+import { catchError, retry } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { error } from '@angular/compiler/src/util';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ const headerOption = {
   providedIn: 'root'
 })
 export class ProductsService {
-  productList:IProduct[]=[];
+  productList: IProduct[]=[];
   id: number = 0;
    selectedProduct: IProduct = new IProduct()
 
@@ -22,27 +22,37 @@ export class ProductsService {
 
     ////* GET FETCH PROD: ////
       getProducts(): Observable<IProduct[]> {
-        return this.http.get<any[]>(this.baseUrl)
+        return this.http.get<any[]>(this.baseUrl).pipe(
+          retry(1),
+          catchError(this.handleError))
       }
     ////* SELECTED PRODUCT: ////
       getSelectedProduct(id:number): Observable<any> {
-        return this.http.get(`${this.baseUrl}/${id}`);
+        return this.http.get(`${this.baseUrl}/${id}`).pipe(
+          retry(1),
+          catchError(this.handleError))
       }
 
     ////* DELETE: ////
       delete(id:number):Observable<IProduct[]>{
-       return this.http.delete<any>(`${this.baseUrl}/${id}`)
+       return this.http.delete<any>(`${this.baseUrl}/${id}`).pipe(
+        retry(1),
+        catchError(this.handleError))
       }
     ////* UPDATE: ////
     onUpdate(product:IProduct, id:any): Observable<IProduct> {
       // const jsonBody = JSON.stringify(product)
-     return this.http.put<any>(`${this.baseUrl}/${id}`,product,headerOption)
+     return this.http.put<any>(`${this.baseUrl}/${id}`,product,headerOption).pipe(
+      retry(1),
+      catchError(this.handleError))
 
     }
         ////* Add: ////
     add(product:IProduct): Observable<IProduct> {
       // const jsonBody = JSON.stringify(product)
-      return this.http.post<any>(this.baseUrl, product,headerOption)
+      return this.http.post<any>(this.baseUrl, product,headerOption).pipe(
+        retry(1),
+        catchError(this.handleError))
 
     }
 
@@ -66,7 +76,10 @@ export class ProductsService {
         }
         // return an observable with a user-facing error message
         return throwError(
-          'There is a problem with the service. We are notified & working on it. Please try again later.');
+          `
+        There is a problem with the service.
+        We are notified & working on it. Please try again later.
+        N.Peretz team`);
       };
   }
 
