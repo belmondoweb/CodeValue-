@@ -1,0 +1,30 @@
+{
+    "products": [{
+            "id": 1,
+            "Name": "hero Product",
+            "Description": "Lorem ipsum dolor sit amet",
+            "Price": 99,
+            "iconUrl": "../../assets/new-product.webp "
+        },
+        {
+            "id": 2,
+            "Name": "Product 1",
+            "Description": "Lorem ipsum dolor sit amet",
+            "Price": 88,
+            "iconUrl": "../../assets/new-product.webp "
+        },
+        {
+            "id": 2,
+            "Name": "Product 2",
+            "Description": "Lorem ipsum dolor sit amet",
+            "Price": 88
+        },
+        {
+            "id": 3,
+            "Name": "Product 3",
+            "Description": "Lorem ipsum dolor sit amet",
+            "Price": 88,
+            "iconUrl": "../../assets/new-product.webp "
+        }
+    ]
+}

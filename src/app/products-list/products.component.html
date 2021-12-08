@@ -1,0 +1,39 @@
+<div class="p-4">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="d-flex">
+                <button class="btn btn-success " routerLink="./product/add/0">Add Product</button>
+            </div>
+            <div class="form-group mb-0 mt-4">
+                <input type="text" class="form-control" placeholder="Search Store product" [(ngModel)]="searchTerm" />
+            </div>
+            <div *ngIf="products$ |async as product">
+                <div class="card p-2 mt-2 " *ngFor="let prod of product | producSearch:searchTerm; index as i ">
+                    <div class="media ">
+
+                        <img class="mr-3 " src="../../assets/new-product.webp " />
+                        <div class="media-body" (click)="onEdit(prod)">
+                            <h5 class="mt-0 "><em>{{ prod.Name }}</em>
+                            </h5>
+                            <p class="mb-0 ">{{ prod.Description }}</p>
+                            <p>{{prod.Price | currency }}</p>
+                        </div>
+                        <div class="mt-4 ">
+                            <button class="btn btn-danger mr-2 " (click)="delete(prod.id) ">X</button>
+                            <a class="btn btn-success " (click)="onEdit(prod)">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-template #loading>
+            <div>Loading...</div>
+        </ng-template>
+        <div class=" col-md-5 ">
+            <app-product [selectedProduct]="selectedProduct"></app-product>
+        </div>
+    </div>
+
+</div>
+
+<div>

@@ -1,0 +1,26 @@
+<div class="container mt-5 ml-5">
+    <h3>{{header}}</h3>
+</div>
+<div class="form-add-new">
+
+    <form novalidate (submit)="onSubmit(form)" #form="ngForm">
+        <!-- <input type="hidden" name="id" [value]="productsService.selectedProduct.id" /> -->
+        <div class=" form-group ">
+            <label>Name</label>
+            <input type="text" class="form-control" name="Name" placeholder="Name" #Name="ngModel" [(ngModel)]="productsService.selectedProduct.Name" required maxlength="22" [class.invalid]="Name.invalid && Name.touched" />
+        </div>
+        <div class=" form-group ">
+            <label>Description</label>
+            <input type="text " class="form-control" name="Description" #Description="ngModel" [(ngModel)]="productsService.selectedProduct.Description" required maxlength="30" placeholder="Description" />
+        </div>
+        <div class=" form-group ">
+            <label>Price</label>
+            <input type="number " class="form-control" name="Price" placeholder="Price" #Price="ngModel" [(ngModel)]="productsService.selectedProduct.Price" required maxlength="5 " />
+        </div>
+
+        <div>
+            <button class="btn btn-danger " [disabled]="!form.valid" type=" submit ">Save</button>
+            <!--  " -->
+        </div>
+    </form>
+</div>
