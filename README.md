@@ -1,28 +1,29 @@
-# CodeValue-
+CodeValue-
 Angular Crud with Json server -lazy router - async pipe
+ # 
  json-server --watch ./src/app/data.json
  
  npm i bootstrap
 
-● src
-+---● app
-|   +--● product-list
-|   |  |--product-list.component.ts|.html
-|   |  |
-|   |  +--● product
-|   |  |  |--product-form.component.ts|.html
-|   |  |  |
-|   |  |-products.module.ts
-|   |  |-products-routing.module.ts
-|      |-produc-search.pipe.ts
-|      |
-|   +--● services 
-|   |  |--products.service.ts
-|   |  |--product.model.ts
-|   |
-|   |--app.module.ts
-|
-|--index.html (cdn path for bootstrap & fa icons)
+# ● src
+# +---● app
+# |   +--● product-list
+# |   |  |--product-list.component.ts|.html
+# |   |  |
+# |   |  +--● product
+# |   |  |  |--product-form.component.ts|.html
+# |   |  |  |
+# |   |  |-products.module.ts
+# |   |  |-products-routing.module.ts
+# |      |-produc-search.pipe.ts
+# |      |
+# |   +--● services 
+# |   |  |--products.service.ts
+# |   |  |--product.model.ts
+# |   |
+# |   |--app.module.ts
+# |
+# |--index.html (cdn path for bootstrap & fa icons)
 
 {    
 <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -31,7 +32,7 @@ Angular Crud with Json server -lazy router - async pipe
  }
 
 
-export class IProduct {
+# export class IProduct {
   id?: number;
   Name:string='';
   Description: string='';
